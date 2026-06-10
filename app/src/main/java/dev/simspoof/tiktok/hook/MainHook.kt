@@ -30,7 +30,8 @@ class MainHook : IXposedHookLoadPackage {
             "com.ss.android.ugc.trill",
             "com.zhiliaoapp.musically.go",
             "com.ss.android.ugc.aweme",
-            "com.tiktok.business"
+            "com.tiktok.business",
+            "com.ss.android.ugc.tiktok.lite"
         )
 
         private const val MODULE_PACKAGE = "dev.simspoof.tiktok"
@@ -58,9 +59,9 @@ class MainHook : IXposedHookLoadPackage {
         if (cfg.spoofLocale) hookLocale(lpparam.classLoader)
     }
 
-    // ──────────────────────────────────────────────────────────────────────────
+    // ───────────────────────────────────────────────────────────────[...]
     //  TelephonyManager
-    // ──────────────────────────────────────────────────────────────────────────
+    // ───────────────────────────────────────────────────────────────[...]
 
     private fun hookTelephonyManager(cl: ClassLoader) {
         val tm = "android.telephony.TelephonyManager"
@@ -124,9 +125,9 @@ class MainHook : IXposedHookLoadPackage {
         XposedBridge.log("$TAG: TelephonyManager hooks installed")
     }
 
-    // ──────────────────────────────────────────────────────────────────────────
+    // ────────────────────────────────────────────────────────────────[...]
     //  SubscriptionManager  (Android 5.1+, API 22)
-    // ──────────────────────────────────────────────────────────────────────────
+    // ────────────────────────────────────────────────────────────────[...]
 
     private fun hookSubscriptionManager(cl: ClassLoader) {
         val sm = "android.telephony.SubscriptionManager"
@@ -139,9 +140,9 @@ class MainHook : IXposedHookLoadPackage {
         XposedBridge.log("$TAG: SubscriptionManager hooks installed")
     }
 
-    // ──────────────────────────────────────────────────────────────────────────
+    // ────────────────────────────────────────────────────────────────[...]
     //  Locale
-    // ──────────────────────────────────────────────────────────────────────────
+    // ────────────────────────────────────────────────────────────────[...]
 
     @Suppress("UNUSED_PARAMETER")
     private fun hookLocale(cl: ClassLoader) {
@@ -160,9 +161,9 @@ class MainHook : IXposedHookLoadPackage {
         XposedBridge.log("$TAG: Locale.getDefault() → $fakeLocale")
     }
 
-    // ──────────────────────────────────────────────────────────────────────────
+    // ────────────────────────────────────────────────────────────────[...]
     //  Helpers
-    // ──────────────────────────────────────────────────────────────────────────
+    // ────────────────────────────────────────────────────────────────[...]
 
     /**
      * Hook a no-arg method and replace its return value.
